@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        background-color: #fbfbfb;
+    }
+
+    .calculator {
+
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        width: 350px;
+        color: #ffffff;
+        background-color: #000000;
+    }
+
+    .display {
+        background-color: rgb(80, 80, 80);
+        color: #fff;
+        padding: 20px 20px;
+        border-radius: 5px;
+        text-align: right;
+        font-size: 29px;
+        margin-bottom: 10px;
+    }
+
+    .button-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+        width: auto;
+        height: 80px
+    }
+
+    input[type="button"] {
+        background-color: #575757c1;
+        color: #ffffff;
+        border-radius: 5px;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        flex: 1;
+        margin: 4px 2px;
+    }
+
+    input[type="button"][value="AC"],
+    input[type="button"][value="+/-"],
+    input[type="button"][value="%"],
+    input[type="button"][value="÷"],
+    input[type="button"][value="*"],
+    input[type="button"][value="-"],
+    input[type="button"][value="+"],
+    input[type="button"][value="="] {
+        background-color: #ff9500;
+        color: #fff;
+    }
+
+    input[type="button"][value="0"] {
+
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: center;
+    }
+
+    .calc-display {
+        font-size: 50px;
+        padding: 10px;
+        text-align: right;
+    }
+</style>
+
+<body>
+
+    <div class="calculator">
+        <input type="text" id="result" class="display" readonly>
+        <div class="button-row">
+            <input type="button" value="AC" onclick="clearScreen()">
+            <input type="button" value="+/-" onclick="display('+/-')">
+            <input type="button" value="%" onclick="display('%')">
+            <input type="button" value="÷" onclick="display('÷')">
+        </div>
+        <div class="button-row">
+            <input type="button" value="7" onclick="display('7')">
+            <input type="button" value="8" onclick="display('8')">
+            <input type="button" value="9" onclick="display('9')">
+            <input type="button" value="*" onclick="display('*')">
+        </div>
+        <div class="button-row">
+            <input type="button" value="4" onclick="display('4')">
+            <input type="button" value="5" onclick="display('5')">
+            <input type="button" value="6" onclick="display('6')">
+            <input type="button" value="-" onclick="display('-')">
+        </div>
+        <div class="button-row">
+            <input type="button" value="1" onclick="display('1')">
+            <input type="button" value="2" onclick="display('2')">
+            <input type="button" value="3" onclick="display('3')">
+            <input type="button" value="+" onclick="display('+')">
+        </div>
+        <div class="button-row">
+            <input type="button" value="0" onclick="display('0')">
+            <input type="button" value="." onclick="display('.')">
+            <input type="button" value="=" onclick="calculate()" id="btn" />
+        </div>
+
+    </div>
+    <script>
+        function clearScreen() {
+            document.getElementById("result").value = "";
+        }
+
+        function display(value) {
+            var displayValue = document.getElementById("result").value;
+
+            if (value === '*') {
+                displayValue += '*';
+            } else if (value === '÷') {
+                displayValue += '/';
+            } else {
+                displayValue += value;
+            }
+
+            document.getElementById("result").value = displayValue;
+        }
+        function calculate() {
+            var expression = document.getElementById("result").value;
+
+            try {
+                var result = eval(expression);
+                document.getElementById("result").value = result;
+            } catch (error) {
+                document.getElementById("result").value = "Error";
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>
